@@ -11,6 +11,7 @@ const rate = document.getElementById("rate")
 const pitchValue = document.getElementById("pitch-value")
 const pitch = document.getElementById("pitch")
 const voiceSelect = document.getElementById("voice-select")
+const body = document.querySelector("body")
 
 let voices = []
 
@@ -38,10 +39,17 @@ const speak = () => {
         return
     }
     if(textInput.value !== ""){
+
+        // Add background animation
+        body.style.background = '#141414 url(img/wave.gif)'
+        body.style.backgroundRepeat = 'repeat-x'
+        body.style.backgroundSize = '100% 100%'
+
         //get speak text
         const text = new SpeechSynthesisUtterance(textInput.value)
         text.onend = e => {
             console.log("done speaking...")
+            body.style.background = '#141414'
         }
 
         text.onerror = e => {
